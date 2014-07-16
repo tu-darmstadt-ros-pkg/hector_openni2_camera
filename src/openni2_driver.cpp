@@ -29,7 +29,7 @@
  *      Author: Julius Kammerl (jkammerl@willowgarage.com)
  */
 
-#include "openni2_camera/openni2_driver.h"
+#include "hector_openni2_camera/openni2_driver.h"
 #include "openni2_camera/openni2_exception.h"
 
 #include <sensor_msgs/image_encodings.h>
@@ -467,7 +467,7 @@ void OpenNI2Driver::newColorFrameCallback(sensor_msgs::ImagePtr image)
 void OpenNI2Driver::newDepthFrameCallback(sensor_msgs::ImagePtr image)
 {
     ros::Time time = ros::Time::now () + ros::Duration(depth_time_offset_);
-    if ( ((++data_skip_depth_counter_)%data_skip_depth_==0) && (isSlowSensorHeadMotion(time)) )
+    if ( ((++data_skip_depth_counter_)%data_skip_depth_==0) )//&& (isSlowSensorHeadMotion(time)) )
   {
 
     data_skip_depth_counter_ = 0;
