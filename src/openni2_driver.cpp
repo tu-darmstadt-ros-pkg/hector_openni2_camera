@@ -467,7 +467,7 @@ void OpenNI2Driver::newColorFrameCallback(sensor_msgs::ImagePtr image)
 void OpenNI2Driver::newDepthFrameCallback(sensor_msgs::ImagePtr image)
 {
     ros::Time time = ros::Time::now () + ros::Duration(depth_time_offset_);
-    if ( ((++data_skip_depth_counter_)%data_skip_depth_==0) )//&& (isSlowSensorHeadMotion(time)) )
+    if ( ((++data_skip_depth_counter_)%data_skip_depth_==0) && (isSlowSensorHeadMotion(time)) )
   {
 
     data_skip_depth_counter_ = 0;
