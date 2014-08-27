@@ -18,6 +18,7 @@ catkin_package(
 )
 
 include_directories(include 
+                    include/hector_openni2_camera
                     ${catkin_INCLUDE_DIRS} 
                     ${Boost_INCLUDE_DIRS}
                     ${PC_OPENNI2_INCLUDE_DIRS}
@@ -63,7 +64,7 @@ install(TARGETS openni2_wrapper openni2_camera_nodelet openni2_camera_node openn
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
 
-install(DIRECTORY include/${PROJECT_NAME}/
+install(DIRECTORY include/${PROJECT_NAME}/openni2_camera/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 

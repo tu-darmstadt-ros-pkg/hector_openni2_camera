@@ -29,7 +29,7 @@
  *      Author: Julius Kammerl (jkammerl@willowgarage.com)
  */
 
-#include "hector_openni2_camera/openni2_driver.h"
+#include "hector_openni2_camera/openni2_camera/openni2_driver.h"
 #include "openni2_camera/openni2_exception.h"
 
 #include <sensor_msgs/image_encodings.h>
