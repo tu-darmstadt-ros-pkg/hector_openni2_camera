@@ -57,6 +57,8 @@ bool OpenNI2FrameListener::setUseDeviceTimer(bool enable)
 
   if (user_device_timer_)
     timer_filter_->clear();
+
+  return true;
 }
 
 void OpenNI2FrameListener::onNewFrame(openni::VideoStream& stream)

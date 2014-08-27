@@ -143,7 +143,7 @@ void OpenNI2Driver::advertiseROSTopics()
 
 void OpenNI2Driver::configCb(Config &config, uint32_t level)
 {
-  bool stream_reset = false;
+  // bool stream_reset = false;
 
   depth_ir_offset_x_ = config.depth_ir_offset_x;
   depth_ir_offset_y_ = config.depth_ir_offset_y;
@@ -561,7 +561,7 @@ sensor_msgs::CameraInfoPtr OpenNI2Driver::getColorCameraInfo(int width, int heig
   if (color_info_manager_->isCalibrated())
   {
     info = boost::make_shared<sensor_msgs::CameraInfo>(color_info_manager_->getCameraInfo());
-    if ( info->width != width )
+    if ( info->width != static_cast<sensor_msgs::CameraInfo::_width_type>(width) )
     {
       // Use uncalibrated values
       ROS_WARN_ONCE("Image resolution doesn't match calibration of the RGB camera. Using default parameters.");
@@ -589,7 +589,7 @@ sensor_msgs::CameraInfoPtr OpenNI2Driver::getIRCameraInfo(int width, int height,
   if (ir_info_manager_->isCalibrated())
   {
     info = boost::make_shared<sensor_msgs::CameraInfo>(ir_info_manager_->getCameraInfo());
-    if ( info->width != width )
+    if ( info->width != static_cast<sensor_msgs::CameraInfo::_width_type>(width) )
     {
       // Use uncalibrated values
       ROS_WARN_ONCE("Image resolution doesn't match calibration of the IR camera. Using default parameters.");
@@ -662,7 +662,7 @@ std::string OpenNI2Driver::resolveDeviceURI(const std::string& device_id) throw(
     int device_number;
     device_number_str >> device_number;
     int device_index = device_number - 1; // #1 refers to first device
-    if (device_index >= available_device_URIs->size() || device_index < 0)
+    if (static_cast<std::size_t>(device_index) >= available_device_URIs->size() || device_index < 0)
     {
       THROW_OPENNI_EXCEPTION(
           "Invalid device number %i, there are %zu devices connected.",
